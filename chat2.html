@@ -37,7 +37,7 @@
                 var offlineElt = document.querySelector(".offlineSupportUI");
                 if(offlineElt != null) {
                     offlineElt.childNodes.forEach(function(childElt){
-                        childElt.className = 'hidden'
+                        childElt.style.display = "none";
                     });
                     var divText = document.createElement("div");
                     var divtest = document.createElement("h3");

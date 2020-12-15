@@ -1,0 +1,85 @@
+<html>
+	<body>
+    <!--Embedded Service Snippet-->
+    <style type='text/css'>
+        .sidebarHeader , h2 {
+            white-space: break-spaces !important;
+        }
+        .embeddedServiceHelpButton .helpButton .uiButton {
+        	background-color: #E1793A;
+        	font-family: "Salesforce Sans", sans-serif;
+        	min-width: 250px;
+        }
+        .embeddedServiceHelpButton .helpButton .uiButton:focus {
+        	outline: 1px solid #E1793A;
+        }
+        @font-face {
+        	font-family: 'Salesforce Sans';
+        	src: url('https://c1.sfdcstatic.com/etc/clientlibs/sfdc-aem-master/clientlibs_base/fonts/SalesforceSans-Regular.woff') format('woff'),
+        	url('https://c1.sfdcstatic.com/etc/clientlibs/sfdc-aem-master/clientlibs_base/fonts/SalesforceSans-Regular.ttf') format('truetype');
+        }
+    </style>
+    
+    <script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
+    <script type='text/javascript'>
+        var initESW = function(gslbBaseURL) {
+            embedded_svc.settings.displayHelpButton = true;
+            embedded_svc.settings.language = 'fr';
+            
+            embedded_svc.settings.defaultMinimizedText = 'Chat with us ! Talk with an agent'; //when agent is online
+            embedded_svc.settings.offlineSupportMinimizedText = 'Need help ?'; //when agent is offline
+            
+            embedded_svc.settings.enabledFeatures = ['LiveAgent'];
+            embedded_svc.settings.entryFeature = 'LiveAgent';
+            
+            embedded_svc.addEventHandler("afterMaximize", function(data) {
+                console.log("afterMaximize event was fired.");
+                var offlineElt = document.querySelector(".offlineSupportUI");
+                if(offlineElt != null) {
+                    offlineElt.childNodes.forEach(function(childElt){
+                        childElt.className = 'hidden'
+                    });
+                    var divText = document.createElement("div");
+                    var divtest = document.createElement("h3");
+                    divtest.appendChild(document.createTextNode("Do you have a question? We have the answer."));
+                    divText.appendChild(divtest);
+                    divText.appendChild(document.createTextNode("Find all the information and practical tools you need to prepare, book and monitor your trip on our "));
+                    offlineElt.appendChild(divText);
+                    var link = document.createElement("a");
+                    link.href = "https://www.oui.sncf/aide/aide-en-ligne";
+                    link.appendChild(document.createTextNode("online help."));
+                    offlineElt.appendChild(link);
+                }
+            });
+            
+            embedded_svc.init(
+                'https://oui-sncf--int.my.salesforce.com',
+                'https://int-chatoui.cs109.force.com/liveAgentSetupFlow',
+                gslbBaseURL,
+                '00D0Q0000000RZk',
+                'OUI_SNCF_Live_Chat',
+                {
+                    baseLiveAgentContentURL: 'https://c.la1-c1cs-fra.salesforceliveagent.com/content',
+                    deploymentId: '5720Q0000004CSP',
+                    buttonId: '5730Q0000004FXc',
+                    baseLiveAgentURL: 'https://d.la1-c1cs-fra.salesforceliveagent.com/chat',
+                    eswLiveAgentDevName: 'OUI_SNCF_Live_Chat',
+                    isOfflineSupportEnabled: true
+                }
+            );
+        };
+    
+    if (!window.embedded_svc) {
+        var s = document.createElement('script');
+        s.setAttribute('src', 'https://oui-sncf--int.my.salesforce.com/embeddedservice/5.0/esw.min.js');
+        s.onload = function() {
+            initESW(null);
+        };
+        document.body.appendChild(s);
+    } else {
+        initESW('https://service.force.com');
+    }
+    </script>
+</apex:page>
+	</body>
+</html>

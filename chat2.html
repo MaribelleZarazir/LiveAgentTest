@@ -5,10 +5,16 @@
         .sidebarHeader , h2 {
             white-space: break-spaces !important;
         }
-        .embeddedServiceHelpButton .helpButton .uiButton {
+	.embeddedServiceHelpButton .helpButton .uiButton {
         	background-color: #E1793A;
         	font-family: "Salesforce Sans", sans-serif;
         	min-width: 250px;
+        }
+        .embeddedServiceHelpButton .helpButton .uiButton ::before{
+      		width: 100px;
+      		height: 100px;
+      		background: red;
+      		border-radius: 50%
         }
         .embeddedServiceHelpButton .helpButton .uiButton:focus {
         	outline: 1px solid #E1793A;

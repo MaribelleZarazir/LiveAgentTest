@@ -42,6 +42,10 @@
       .embeddedServiceHelpButton .helpButton .uiButton:focus {
         outline: 1px solid #F7F1ED;
       }
+      .offlineHelpText {
+        padding-left: 5px;
+        padding-right: 5px;
+      }
       @font-face {
         font-family: "Salesforce Sans";
         src: url("https://c1.sfdcstatic.com/etc/clientlibs/sfdc-aem-master/clientlibs_base/fonts/SalesforceSans-Regular.woff")
@@ -75,18 +79,19 @@
               childElt.style.display = "none";
             });
             var divText = document.createElement("div");
-            var divtest = document.createElement("h3");
-            divtest.appendChild(
+            var title = document.createElement("h3");
+            title.appendChild(
               document.createTextNode(
                 "Do you have a question? We have the answer."
               )
             );
-            divText.appendChild(divtest);
+            divText.appendChild(title);
             divText.appendChild(
               document.createTextNode(
                 "Find all the information and practical tools you need to prepare, book and monitor your trip on our "
               )
             );
+            divText.class = "offlineHelpText";
             offlineElt.appendChild(divText);
             var link = document.createElement("a");
             link.href = "https://www.oui.sncf/aide/aide-en-ligne";

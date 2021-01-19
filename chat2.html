@@ -1,6 +1,6 @@
 <html>
   <body>
-    <h3>Live Agent Test !!PROD TEST!! :</h3>
+    <h3>Live Agent Test !!PROD TEST - PROD TEST!! :</h3>
     <!--Embedded Service Snippet-->
     <!--Salesforce Embedded Service Snippet | Live Agent Button | English-->
 <style type='text/css'>
@@ -62,7 +62,7 @@
 		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
         embedded_svc.settings.entryFeature = 'LiveAgent';
         
-	//Offline Support - Start
+    //Offline Support - Start
     embedded_svc.addEventHandler("afterMaximize", function (data) {
         console.log("afterMaximize event was fired.");
         var offlineElt = document.querySelector(".offlineSupportUI");
@@ -71,12 +71,16 @@
             childElt.style.display = "none";
         });
         var divText = document.createElement("div");
-        divText.appendChild(
+        var divTextTtl1 = document.createElement("div");
+        var divTextTtl2 = document.createElement("div");
+        divTextTtl1.appendChild(
             document.createTextNode("Do you have a question?") //Offline Help - Title
         );
-        divText.appendChild(
+        divTextTtl2.appendChild(
             document.createTextNode("Do you have a question?") //Offline Help - Title
         );
+        divText.appendChild(divTextTtl1);
+        divText.appendChild(divTextTtl2);
         divText.appendChild(
             document.createTextNode("Find all the information and practical tools you need to prepare, book and monitor your trip on our ") //Offline Help
         );

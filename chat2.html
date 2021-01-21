@@ -3,7 +3,7 @@
     <h3>Live Agent Test !!PROD TEST - PROD TEST!! :</h3>
     <!--Embedded Service Snippet-->
     <!--Salesforce Embedded Service Snippet | Live Agent Button | English-->
-<style type='text/css'>
+<style type="text/css">
     .sidebarHeader,
     h2 {
     white-space: break-spaces !important;
@@ -21,13 +21,13 @@
     white-space: normal !important;
     color: #302d2d !important;
     }
-	.embeddedServiceHelpButton .helpButton .uiButton {
-		background-color: #F7F1ED;
-		font-family: "Arial", sans-serif;
-        min-width: 190px;
-        border-radius: 8px !important;
-        bottom: 4px !important;
-	}
+    .embeddedServiceHelpButton .helpButton .uiButton {
+    background-color: #F7F1ED;
+    font-family: "Salesforce Sans", sans-serif;
+    min-width: 190px;
+    border-radius: 8px !important;
+    bottom: 4px !important;
+    }
     .helpButton:before {
     position: fixed;
     bottom: 6px;
@@ -40,28 +40,38 @@
     box-shadow: 0px 0px 8px grey;
     border-radius: 50%;
     }
-	.embeddedServiceHelpButton .helpButton .uiButton:focus {
-		outline: 1px solid #F7F1ED;
-	}
+    .embeddedServiceHelpButton .helpButton .uiButton:focus {
+    outline: 1px solid #F7F1ED;
+    }
     .offlineHelpText {
     padding-left: 5px;
     padding-right: 5px;
     }
+    @font-face {
+    font-family: "Salesforce Sans";
+    src: url("https://c1.sfdcstatic.com/etc/clientlibs/sfdc-aem-master/clientlibs_base/fonts/SalesforceSans-Regular.woff")
+        format("woff"),
+        url("https://c1.sfdcstatic.com/etc/clientlibs/sfdc-aem-master/clientlibs_base/fonts/SalesforceSans-Regular.ttf")
+        format("truetype");
+    }
 </style>
 
-<script type='text/javascript' src='https://service.force.com/embeddedservice/5.0/esw.min.js'></script>
-<script type='text/javascript'>
-	var initESW = function(gslbBaseURL) {
-		embedded_svc.settings.displayHelpButton = true;
-		embedded_svc.settings.language = 'en'; //Chat language
+<script
+    type="text/javascript"
+    src="https://service.force.com/embeddedservice/5.0/esw.min.js"
+></script>
+<script type="text/javascript">
+    var initESW = function (gslbBaseURL) {
+    embedded_svc.settings.displayHelpButton = true;
+    embedded_svc.settings.language = "en"; //Chat language
 
-        embedded_svc.settings.defaultMinimizedText =
+    embedded_svc.settings.defaultMinimizedText =
         "Chat with us ! Talk with an agent"; //when agent is online
-        embedded_svc.settings.offlineSupportMinimizedText = "Need help ?"; //when agent is offline
+    embedded_svc.settings.offlineSupportMinimizedText = "Need help ?"; //when agent is offline
 
-		embedded_svc.settings.enabledFeatures = ['LiveAgent'];
-        embedded_svc.settings.entryFeature = 'LiveAgent';
-        
+    embedded_svc.settings.enabledFeatures = ["LiveAgent"];
+    embedded_svc.settings.entryFeature = "LiveAgent";
+
     //Offline Support - Start
     embedded_svc.addEventHandler("afterMaximize", function (data) {
         console.log("afterMaximize event was fired.");
@@ -71,58 +81,62 @@
             childElt.style.display = "none";
         });
         var divText = document.createElement("div");
-        var divTextTtl1 = document.createElement("div");
-        var divTextTtl2 = document.createElement("div");
-        divTextTtl1.appendChild(
-            document.createTextNode("Do you have a question?") //Offline Help - Title
+        var title = document.createElement("div");
+        title.appendChild(
+            document.createTextNode(
+            "Do you have a question? We have the answer." //Offline Help - Title
+            )
         );
-        divTextTtl2.appendChild(
-            document.createTextNode("Do you have a question?") //Offline Help - Title
-        );
-        divText.appendChild(divTextTtl1);
-        divText.appendChild(divTextTtl2);
+        divText.appendChild(title);
         divText.appendChild(
-            document.createTextNode("Find all the information and practical tools you need to prepare, book and monitor your trip on our ") //Offline Help
+            document.createTextNode(
+            "Find all the information and practical tools you need to prepare, book and monitor your trip on our " //Offline Help
+            )
         );
         divText.className = "offlineHelpText";
+        offlineElt.appendChild(divText);
         var link = document.createElement("a");
         link.href = "https://en.oui.sncf/en/help-en/help-online"; //Redirect link
         link.style.color = 'blue';
         link.style.textDecoration = "underline";
         link.appendChild(document.createTextNode("online help.")); //Offline Help
-        divText.appendChild(link);
-        offlineElt.appendChild(divText);
+        offlineElt.appendChild(link);
         }
     });
     //Offline Support - End
 
-		embedded_svc.init(
-			'https://oui-sncf.my.salesforce.com',
-			'https://chatoui.secure.force.com/liveAgentSetupFlow',
-			gslbBaseURL,
-			'00D1t000000rAqE',
-			'OUI_SNCF_Live_Chat',
-			{
-				baseLiveAgentContentURL: 'https://c.la2-c1-fra.salesforceliveagent.com/content',
-				deploymentId: '5723W000000000f',
-				buttonId: '5733W000000000u',
-				baseLiveAgentURL: 'https://d.la2-c1-fra.salesforceliveagent.com/chat',
-				eswLiveAgentDevName: 'OUI_SNCF_Live_Chat',
-				isOfflineSupportEnabled: true
-			}
-		);
-	};
+    embedded_svc.init(
+        "https://oui-sncf--int.my.salesforce.com",
+        "https://int-chatoui.cs109.force.com/liveAgentSetupFlow",
+        gslbBaseURL,
+        "00D0Q0000000RZk",
+        "OUI_SNCF_Live_Chat",
+        {
+        baseLiveAgentContentURL:
+            "https://c.la1-c1cs-fra.salesforceliveagent.com/content",
+        deploymentId: "5720Q0000004CSP",
+        buttonId: "5730Q0000004FXc",
+        baseLiveAgentURL:
+            "https://d.la1-c1cs-fra.salesforceliveagent.com/chat",
+        eswLiveAgentDevName: "OUI_SNCF_Live_Chat",
+        isOfflineSupportEnabled: true,
+        }
+    );
+    };
 
-	if (!window.embedded_svc) {
-		var s = document.createElement('script');
-		s.setAttribute('src', 'https://oui-sncf.my.salesforce.com/embeddedservice/5.0/esw.min.js');
-		s.onload = function() {
-			initESW(null);
-		};
-		document.body.appendChild(s);
-	} else {
-		initESW('https://service.force.com');
-	}
+    if (!window.embedded_svc) {
+    var s = document.createElement("script");
+    s.setAttribute(
+        "src",
+        "https://oui-sncf--int.my.salesforce.com/embeddedservice/5.0/esw.min.js"
+    );
+    s.onload = function () {
+        initESW(null);
+    };
+    document.body.appendChild(s);
+    } else {
+    initESW("https://service.force.com");
+    }
 </script>
   </body>
 </html>
